@@ -1,91 +1,62 @@
 # AIS JSON Decryptor
 
-A simple and secure utility to decrypt AIS (Annual Information Statement) JSON files. This tool provides both a Command-Line Interface (CLI) and a Graphical User Interface (GUI) for ease of use.
+A secure utility to decrypt AIS (Annual Information Statement) JSON files. This tool allows you to convert your encrypted financial data into a readable, formatted JSON file using your PAN and Date of Birth.
 
-## Features
+---
 
-- **Double Interface**: Choose between a modern PyQt6 GUI or a lightweight CLI.
-- **Secure Decryption**: Uses standard AES-256 decryption with PBKDF2 key derivation.
-- **Automated Releases**: Integrated GitHub Actions to build standalone Windows executables.
-- **Input Validation**: Clear error messaging for incorrect PAN, DOB, or file paths.
+## 🚀 How to Use
 
-## Prerequisites
+Choose the method that works best for you:
 
-- Python 3.12+
-- A virtual environment (recommended)
+### 1. Using the Windows Executable (Easiest)
+If you downloaded the `.exe` file from the [Releases](https://github.com/iambalaji-k/aisdecrypt/releases) page:
+1.  **Run** `AIS_Decryptor_GUI.exe`.
+2.  **Enter your PAN** (e.g., ABCDE1234F).
+3.  **Enter your Date of Birth** in `DDMMYYYY` format (e.g., 01011990).
+4.  **Click "Browse"** to select your encrypted AIS file.
+5.  **Click "Decrypt File"**. Your decrypted file will be saved as `decrypted.json` by default.
 
-## Installation
+### 2. Using the Graphical Interface (Python)
+If you have Python installed and want to run the GUI from source:
+1.  Open your terminal/command prompt in the project folder.
+2.  Run the following command:
+    ```bash
+    python gui.py
+    ```
+3.  Use the window to enter your credentials and select your file. The interface will guide you through the process and show a success message once finished.
 
-1. **Clone the repository**:
-   ```bash
-   git clone <your-repo-url>
-   cd aisdecrypt
-   ```
+### 3. Using the Command-Line Interface (CLI)
+For users who prefer working directly in the terminal:
+1.  Open your terminal/command prompt in the project folder.
+2.  Run the following command:
+    ```bash
+    python AIS_Decryptor.py
+    ```
+3.  **Follow the prompts**:
+    - Input your PAN and DOB.
+    - Provide the full path to the encrypted file.
+    - (Optional) Provide a name for the output file.
+4.  The tool will output the decryption status directly in the terminal.
 
-2. **Set up the virtual environment**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+---
 
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## 🔐 Privacy & Security
+- **Local Decryption**: All decryption happens locally on your computer. Your PAN, DOB, and financial data are **never** uploaded to the internet or any server.
+- **Open Source**: The logic is transparent and can be reviewed in `AIS_Decryptor.py`.
 
-## Usage
+---
 
-### Graphical User Interface (GUI)
-The GUI is the most user-friendly way to decrypt your files. It includes file pickers and status updates.
+## 🛠 Technical Setup (For Developers)
 
-```bash
-python gui.py
-```
+If you are setting this up to run from source, ensure you have Python 3.12+ installed.
 
-- **PAN**: Enter your 10-digit PAN (case-insensitive).
-- **DOB**: Enter your Date of Birth in `DDMMYYYY` format.
-- **Browse**: Select your encrypted `.json` (or extension-less) file.
-- **Decrypt**: Click the button to generate the formatted JSON output.
-
-### Command-Line Interface (CLI)
-For users who prefer the terminal or want to script the decryption process.
-
-```bash
-python AIS_Decryptor.py
-```
-
-Follow the on-screen prompts to provide the required credentials and file paths.
-
-## Building for Windows
-
-To create a standalone `.exe` file that doesn't require Python to be installed:
-
-```bash
-pyinstaller --onefile --windowed --name AIS_Decryptor_GUI gui.py
-```
-The executable will be found in the `dist/` folder.
-
-## CI/CD and Releases
-
-This repository is configured with GitHub Actions. To trigger an automated build and release:
-
-1. Commit your changes.
-2. Tag the commit with a version number (e.g., `v1.0.0`).
-3. Push the tag to GitHub.
-
-```bash
-git tag v1.2.0
-git push origin --tags
-```
-GitHub will automatically build the Windows executable and upload it to the "Releases" section of your repository.
-
-## Project Structure
-
-- `AIS_Decryptor.py`: Core decryption logic and CLI interface.
-- `gui.py`: PyQt6-based desktop application.
-- `requirements.txt`: Project dependencies.
-- `.github/workflows/release.yml`: Automation for building and releasing.
+1.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+2.  **Dependencies**:
+    - `pycryptodome`: For AES-256 decryption.
+    - `PyQt6`: For the graphical interface.
 
 ## License
-
-This project is for educational/personal use. Please ensure you comply with all data privacy regulations regarding financial statements.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
